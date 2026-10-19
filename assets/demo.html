@@ -1,0 +1,36 @@
+<!doctype html><meta charset="utf-8"><style>
+body{margin:0;background:#0d1117;}
+.win{margin:24px;border-radius:10px;background:#161b22;box-shadow:0 8px 30px rgba(0,0,0,.5);overflow:hidden;width:max-content}
+.bar{height:30px;background:#21262d;display:flex;align-items:center;padding-left:12px;gap:8px}
+.bar i{width:12px;height:12px;border-radius:50%;display:inline-block}
+pre{margin:0;padding:16px 20px 20px;color:#e6edf3;font:13px/1.5 "SF Mono",Menlo,Consolas,monospace;white-space:pre}
+.cmd{color:#8b949e}
+</style><div class="win"><div class="bar"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i></div><pre><span class="cmd">$ npx github:thinx-pro/toolcall-smoke -u localhost:8091 --extra '{"chat_template_kwargs":{"enable_thinking":false}}'</span>
+<span style="font-weight:700">toolcall-smoke</span> <span style="opacity:.55">·</span> <span style="color:#9aedfe">ggml-org/Qwen3-1.7B-GGUF</span> <span style="opacity:.55">@</span> http://localhost:8091/v1 <span style="opacity:.55">(llama.cpp b9770-75ad0b23e)</span>
+  single       one tool, one call                        <span style="color:#5af78e">PASS       </span> <span style="opacity:.55">0.3s  </span> 
+  select       picks the right tool out of 5             <span style="color:#5af78e">PASS       </span> <span style="opacity:.55">0.6s  </span> 
+  no-call      answers directly when no tool fits        <span style="color:#5af78e">PASS       </span> <span style="opacity:.55">0.2s  </span> 
+  integer      integer argument                          <span style="color:#5af78e">PASS       </span> <span style="opacity:.55">0.4s  </span> 
+  enum         enum argument                             <span style="color:#5af78e">PASS       </span> <span style="opacity:.55">0.4s  </span> 
+  boolean      boolean argument                          <span style="color:#5af78e">PASS       </span> <span style="opacity:.55">0.4s  </span> 
+  nested       nested object + array arguments           <span style="color:#5af78e">PASS       </span> <span style="opacity:.55">0.9s  </span> 
+  array        array of strings                          <span style="color:#5af78e">PASS       </span> <span style="opacity:.55">0.5s  </span> 
+  escaping     quotes and newlines inside a string       <span style="color:#f3f99d">WRONG_VALUE</span> <span style="opacity:.55">0.6s  </span> <span style="opacity:.55">wrote a literal backslash-n instead of a newline; got write_file({"path":"not…</span>
+  unicode      non-ASCII arguments                       <span style="color:#5af78e">PASS       </span> <span style="opacity:.55">0.4s  </span> 
+  no-args      tool with no parameters                   <span style="color:#5af78e">PASS       </span> <span style="opacity:.55">0.2s  </span> 
+  optional     optional argument used when asked         <span style="color:#5af78e">PASS       </span> <span style="opacity:.55">0.4s  </span> 
+  parallel     two calls in one turn                     <span style="color:#5af78e">PASS       </span> <span style="opacity:.55">0.6s  </span> 
+  many-tools   picks the right tool out of 16            <span style="color:#5af78e">PASS       </span> <span style="opacity:.55">1.1s  </span> 
+  after-result uses a tool result instead of calling a…  <span style="color:#5af78e">PASS       </span> <span style="opacity:.55">0.3s  </span> 
+  chain        second step of a multi-step task          <span style="color:#5af78e">PASS       </span> <span style="opacity:.55">0.7s  </span> 
+  required     honours tool_choice: "required"           <span style="color:#5af78e">PASS       </span> <span style="opacity:.55">0.7s  </span> 
+  forced       honours tool_choice for a named function  <span style="color:#ff6b6b">WRONG_TOOL </span> <span style="opacity:.55">0.2s  </span> <span style="opacity:.55">expected get_time, got get_weather</span>
+  system       follows a system prompt that mandates t…  <span style="color:#5af78e">PASS       </span> <span style="opacity:.55">0.3s  </span> 
+  stream       streaming: tool call assembled from del…  <span style="color:#5af78e">PASS       </span> <span style="opacity:.55">0.3s  </span> 
+
+  <span style="font-weight:700">18/20 passed (90%)</span><span style="opacity:.55">  ·  WRONG_VALUE 1  WRONG_TOOL 1</span><span style="opacity:.55">  ·  median 0.4s</span>
+  <span style="color:#5af78e"><span style="font-weight:700"> READY </span></span> Structured tool calls work on these cases. The plumbing is fine; task quality is a separate question.
+
+  <span style="color:#9aedfe">how to fix</span>
+  <span style="opacity:.55">→</span> tool_choice = a named function was not enforced: do not rely on it with this server + model; validate the tool name in your loop.
+</pre></div>

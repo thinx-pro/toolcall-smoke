@@ -1,0 +1,37 @@
+{
+  "name": "toolcall-smoke",
+  "version": "0.1.0",
+  "description": "Does your local model actually produce structured tool calls through Ollama / llama.cpp / LM Studio / vLLM? 20 cases, one command, zero dependencies.",
+  "type": "module",
+  "bin": {
+    "toolcall-smoke": "bin/toolcall-smoke.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test test/grade.test.js test/run.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "tool-calling",
+    "function-calling",
+    "ollama",
+    "llama.cpp",
+    "lm-studio",
+    "vllm",
+    "local-llm",
+    "ai-agents",
+    "openai-compatible"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thinx-pro/toolcall-smoke.git"
+  }
+}

@@ -1,0 +1,20 @@
+<!doctype html><meta charset="utf-8"><style>
+body{margin:0;background:#0d1117;}
+.win{margin:24px;border-radius:10px;background:#161b22;box-shadow:0 8px 30px rgba(0,0,0,.5);overflow:hidden;width:max-content}
+.bar{height:30px;background:#21262d;display:flex;align-items:center;padding-left:12px;gap:8px}
+.bar i{width:12px;height:12px;border-radius:50%;display:inline-block}
+pre{margin:0;padding:16px 20px 20px;color:#e6edf3;font:13px/1.5 "SF Mono",Menlo,Consolas,monospace;white-space:pre}
+.cmd{color:#8b949e}
+</style><div class="win"><div class="bar"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i></div><pre><span class="cmd">$ npx github:thinx-pro/toolcall-smoke -u localhost:8092</span>
+<span style="font-weight:700">toolcall-smoke</span> <span style="opacity:.55">·</span> <span style="color:#9aedfe">ggml-org/Qwen3-1.7B-GGUF</span> <span style="opacity:.55">@</span> http://localhost:8092/v1 <span style="opacity:.55">(llama.cpp b9770-75ad0b23e)</span>
+  single        one tool, one call                        <span style="color:#ff6b6b">ERROR      </span> <span style="opacity:.55">0.0s  </span> <span style="opacity:.55">500: tools param requires --jinja flag</span>
+  select        picks the right tool out of 5             <span style="color:#ff6b6b">ERROR      </span> <span style="opacity:.55">0.0s  </span> <span style="opacity:.55">500: tools param requires --jinja flag</span>
+  no-call       answers directly when no tool fits        <span style="color:#ff6b6b">ERROR      </span> <span style="opacity:.55">0.0s  </span> <span style="opacity:.55">500: tools param requires --jinja flag</span>
+
+  <span style="font-weight:700">0/3 passed (0%)</span><span style="opacity:.55">  ·  ERROR 3</span><span style="opacity:.55">  ·  median 0.0s</span>
+  <span style="color:#ff6b6b"><span style="font-weight:700"> NO_TOOLS </span></span> Every request failed. The server or model does not accept the tools parameter as configured.
+<span style="opacity:.55">  (stopped after 3 identical errors; 17 request(s) not sent; pass --no-fail-fast to send them anyway)</span>
+
+  <span style="color:#9aedfe">how to fix</span>
+  <span style="opacity:.55">→</span> llama-server: run with --jinja (default in recent builds; make sure --no-jinja is not set). If the model's embedded template has no tool section, pass one with --chat-template-file.
+</pre></div>
