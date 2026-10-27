@@ -2,6 +2,9 @@
 
 **Does your local model actually produce structured tool calls through *your* server, or does the call end up as text in `message.content`?** One command, 20 small cases, about 10 seconds on a small model.
 
+<!-- agent-preflight -->
+> **Also a Claude Code skill.** `toolcall-smoke` is part of [agent-preflight](https://github.com/thinx-pro/agent-preflight), 16 offline checks for coding agents: `/plugin marketplace add thinx-pro/agent-preflight` then `/plugin install toolcall-smoke@agent-preflight`, and ask Claude in plain words.
+
 ![node >=18](https://img.shields.io/badge/node-%3E%3D18-339933) ![zero dependencies](https://img.shields.io/badge/dependencies-0-blue) ![license MIT](https://img.shields.io/badge/license-MIT-green) ![version 0.1.0](https://img.shields.io/badge/version-0.1.0-lightgrey)
 
 ![toolcall-smoke run against Qwen3-1.7B on llama.cpp](assets/demo.png)
