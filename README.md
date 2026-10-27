@@ -124,9 +124,3 @@ npm test        # 24 tests, uses a built-in mock server; no model needed
 ## License
 
 MIT
-
----
-
-### 中文简介
-
-**toolcall-smoke**：一条命令检查本地模型在你的推理服务（Ollama / llama.cpp / LM Studio / vLLM 等 OpenAI 兼容接口）下，是否真的返回结构化的 `tool_calls`，而不是把工具调用当成文本塞进 `message.content`（后一种情况会让 Agent 循环静默结束）。20 个小用例覆盖参数类型、嵌套、转义、多工具选择、并行调用、`tool_choice`、流式拼装等；每次运行给出判定结论，并针对不同服务端给出修复建议。零依赖，Node 18+：`npx github:thinx-pro/toolcall-smoke -u localhost:8080`。实测数据目前只有 llama.cpp + Qwen3-1.7B，欢迎提交其他组合的报告。
